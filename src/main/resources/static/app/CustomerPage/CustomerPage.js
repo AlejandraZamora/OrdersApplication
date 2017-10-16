@@ -11,24 +11,31 @@ angular.module('myApp.CustomerPage', ['ngRoute'])
 
 .controller('CustomerPageCtrl', ['$rootScope', '$scope', 'customerOrders','$http','$resource', '$location', function ($rootScope, $scope, customerOrders, $http, $resource, $location) {
 
-        $scope.orders=[];
+
 
         $scope.start=null;
         $scope.end=null;
         $scope.clean=false;
         $scope.filter= function(){
-            $scope.clean=true;
-            for(var n=0; n<$scope.orders.length; n++){
-                if(!($scope.orders[n].creationDate>=$scope.start&&$scope.orders[n].creationDate<=$scope.end)){
-                    $scope.orders.splice(n,1);
-                }
+            if($scope.end<=$scope.start){
+                alert("Pleas choose a valid interval of dates");
+            }else{
+                $scope.clean=true;
+                $scope.index=[];
+                for(var n=0; n<$scope.orders.length; n++){
+                    if(($scope.orders[n].creationDate>=$scope.start.getTime() && $scope.orders[n].creationDate<=$scope.end.getTime())){
+                        $scope.index.push($scope.orders[n]);
+                    }
 
+                }$scope.orders=$scope.index;
             }
+
         };
 
         $scope.areOrders=false;
 
         $scope.loadData=function(){
+            $scope.orders=[];
             $scope.clean=false;
             customerOrders.get({customerId:""+$rootScope.customerIdSession})
                 .$promise.then(
@@ -37,7 +44,6 @@ angular.module('myApp.CustomerPage', ['ngRoute'])
                             if(value.length==0){
                                 $scope.areOrders=true;
                             }else{
-                                value.orderByDate("date", -1);
                                 for(var i=0;i<value.length; i++){
                                     $scope.details=[];
                                     $scope.details=value[i].orderDetails;
@@ -48,7 +54,7 @@ angular.module('myApp.CustomerPage', ['ngRoute'])
                                       $scope.products.push({productDescription:$scope.details[i].productDescription});
                                     }
                                     $scope.order={
-                                        date:value[i].creationDate,
+                                        creationDate:value[i].creationDate,
                                         orderId:value[i].orderId,
                                         deliveryAddress:value[i].deliveryAddress,
                                         price:$scope.price,
@@ -61,22 +67,11 @@ angular.module('myApp.CustomerPage', ['ngRoute'])
                         },
                         //error
                         function( error ){
-                            alert("Error");
+                            alert("Something went wrong loading the customer orders");
                         }
                 );
 
         }
-
-
-
         $scope.loadData();
-
-        Array.prototype.orderByDate=function(p,so){
-          if(so!=-1&&so!=1)so=1;
-          this.sort(function(a,b){
-            var da=new Date(a[p]),db=new Date(b[p]);
-            return(da-db)*so;
-          })
-        };
 
 }]);

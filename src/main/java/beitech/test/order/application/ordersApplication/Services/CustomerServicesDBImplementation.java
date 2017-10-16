@@ -1,17 +1,16 @@
 package beitech.test.order.application.ordersApplication.Services;
 
-import beitech.test.order.application.ordersApplication.Entities.Customer;
-import beitech.test.order.application.ordersApplication.Entities.CustomerProduct;
-import beitech.test.order.application.ordersApplication.Entities.Order;
-import beitech.test.order.application.ordersApplication.Entities.Product;
+import beitech.test.order.application.ordersApplication.Entities.*;
 import beitech.test.order.application.ordersApplication.Persistence.CustomerProductRepository;
 import beitech.test.order.application.ordersApplication.Persistence.CustomerRepository;
 import beitech.test.order.application.ordersApplication.Persistence.OrdersRepository;
+import org.hibernate.annotations.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by alejandra on 14/10/17.
@@ -48,7 +47,8 @@ public class CustomerServicesDBImplementation implements CustomerServices{
         List<Order> orders=ordersRepository.findAll();
         List<Order> ordersCustomer= new ArrayList<Order>();
         for (Order order: orders) {
-            if(order.getCustomer().getCustomerId()==customerId){
+            Boolean equals=order.getCustomer().getCustomerId().toString().equals(customerId.toString());
+            if(equals){
                 ordersCustomer.add(order);
             }
         }
@@ -64,8 +64,9 @@ public class CustomerServicesDBImplementation implements CustomerServices{
     public List<Product> getCustomerProducts(Integer customerId) {
         List<Product> products= new ArrayList<Product>();
         List<CustomerProduct> customerProducts =customerProductRepository.findAll();
-        for (CustomerProduct customerProduct :customerProducts) {
-            if(customerProduct.getCustomerProductId().getCustomerId()==customerId){
+        for (CustomerProduct customerProduct : customerProducts) {
+            Boolean equals=customerProduct.getCustomerProductId().getCustomerId().toString().equals(customerId.toString());
+            if(equals){
                 products.add(customerProduct.getProduct());
             }
         }

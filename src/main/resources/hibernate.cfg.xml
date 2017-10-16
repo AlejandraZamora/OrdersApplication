@@ -4,9 +4,9 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10199427?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">sql10199427</property>
-    <property name="hibernate.connection.password">TYtBAxwhdn</property>
+    <property name="hibernate.connection.url">jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10199729?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">sql10199729</property>
+    <property name="hibernate.connection.password">9yqfK4hdbU</property>
     <mapping class="beitech.test.order.application.ordersApplication.Entities.Customer"/>
     <mapping class="beitech.test.order.application.ordersApplication.Entities.Order"/>
     <mapping class="beitech.test.order.application.ordersApplication.Entities.OrderDetail"/>

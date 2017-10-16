@@ -68,7 +68,7 @@
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="order in orders | filter: search" >
-                                    <td>{{order.date | date:"dd/MMMM/yyyy"}}</td>
+                                    <td>{{order.creationDate | date:"dd/MMMM/yyyy"}}</td>
                                     <td>{{order.orderId}}</td>
                                     <td>{{order.price}}</td>
                                     <td>{{order.deliveryAddress}}</td>

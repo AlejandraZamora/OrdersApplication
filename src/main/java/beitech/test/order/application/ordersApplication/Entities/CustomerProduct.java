@@ -15,14 +15,8 @@ import java.io.Serializable;
 public class CustomerProduct implements Serializable{
     public CustomerProduct(){}
 
-    private static final long serialVersionUID = 8518145128362313552L;
     private  CustomerProductId customerProductId;
     private Product product;
-
-    public CustomerProduct(CustomerProductId customerProductId, Product product) {
-        this.customerProductId = customerProductId;
-        this.product = product;
-    }
 
     @EmbeddedId
     @AttributeOverrides({

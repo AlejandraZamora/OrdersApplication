@@ -1,5 +1,7 @@
 package beitech.test.order.application.ordersApplication.Entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,14 +16,13 @@ public class OrderDetail implements Serializable {
 
     }
 
-    private static final long serialVersionUID = 8518145128362313552L;
     private Integer orderDetailId=null;
     private String productDescription=null;
     private Integer price=null;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="order_detail_id", unique = true, nullable = false)
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="order_detail_id")
     public Integer getOrderDetailId() {
         return orderDetailId;
     }

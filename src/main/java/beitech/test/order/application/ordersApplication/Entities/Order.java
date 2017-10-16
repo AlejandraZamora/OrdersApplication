@@ -2,6 +2,8 @@ package beitech.test.order.application.ordersApplication.Entities;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.loader.plan.build.internal.LoadGraphLoadPlanBuildingStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,29 +20,15 @@ public class Order implements Serializable{
 
     public Order(){}
 
-    private static final long serialVersionUID = 6523093022555468864L;
     private Integer orderId;
     private Customer customer;
     private Integer deliveryAddress;
     private Calendar creationDate;
     private List<OrderDetail> orderDetails=new ArrayList<OrderDetail>();
 
-    public Order(Customer customer, Integer deliveryAddress, Calendar creationDate) {
-        this.customer = customer;
-        this.deliveryAddress = deliveryAddress;
-        this.creationDate = creationDate;
-    }
-
-    public Order(Customer customer, Integer deliveryAddress, Calendar creationDate, List<OrderDetail> orderDetails) {
-        this.customer = customer;
-        this.deliveryAddress = deliveryAddress;
-        this.creationDate = creationDate;
-        this.orderDetails = orderDetails;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="order_id", unique = true, nullable = false)
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="order_id")
     public Integer getOrderId() {
         return orderId;
     }
@@ -69,7 +57,6 @@ public class Order implements Serializable{
         this.deliveryAddress = deliveryAddress;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date", nullable = false, length = 19)
     public Calendar getCreationDate() {
         return creationDate;

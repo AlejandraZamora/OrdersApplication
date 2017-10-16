@@ -24,6 +24,7 @@ angular.module('myApp.HomePage', ['ngRoute'])
                     },
                     //error
                     function( error ){
+                        alert("Something went wrong loading the customers");
 
                     }
             );

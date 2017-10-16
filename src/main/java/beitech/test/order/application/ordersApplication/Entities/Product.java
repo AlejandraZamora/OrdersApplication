@@ -1,6 +1,7 @@
 package beitech.test.order.application.ordersApplication.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,28 +16,14 @@ import java.util.List;
 public class Product implements Serializable{
     public Product(){}
 
-    private static final long serialVersionUID = -4224112129753973637L;
     private Integer productId;
     private String name;
     private Integer price;
     private List<CustomerProduct> customerProducts= new ArrayList<CustomerProduct>();
 
-    public Product(Integer productId, String name, Integer price) {
-        this.productId = productId;
-        this.name = name;
-        this.price = price;
-    }
-
-    public Product(Integer productId, String name, Integer price, List<CustomerProduct> customerProducts) {
-        this.productId = productId;
-        this.name = name;
-        this.price = price;
-        this.customerProducts = customerProducts;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="product_id", unique = true, nullable = false)
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="product_id")
     public Integer getProductId() {
         return productId;
     }

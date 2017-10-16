@@ -19,7 +19,7 @@
                         <label>Choose the product</label>
                         <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="productSelected">
                             <option ng-repeat="product in products track by product.productId">{{product.name}}</option>
-                        </select><label>{{productSelected.price}}</label>
+                        </select>
                         <br>
                         <label>Choose the quantity</label>
                         <input class="form-control" type="number" name="quantity" min="1" max="5" ng-model="quantity"><br>

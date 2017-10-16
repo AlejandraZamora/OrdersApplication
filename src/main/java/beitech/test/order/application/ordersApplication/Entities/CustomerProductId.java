@@ -10,16 +10,10 @@ import java.io.Serializable;
 @Embeddable
 public class CustomerProductId implements Serializable {
 
-    private static final long serialVersionUID = 3237914100408508473L;
-    private Integer productId;
-    private Integer customerId;
-
     public CustomerProductId(){}
 
-    public CustomerProductId(Integer productId, Integer customerId) {
-        this.productId = productId;
-        this.customerId = customerId;
-    }
+    private Integer productId;
+    private Integer customerId;
 
     @Column(name = "producto_id", nullable = false)
     public Integer getProductId() {
