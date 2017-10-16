@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Welcome to this orders application!</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <label> Select the customer you want to continue with</label>
+                                <br>
+                                <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="customerSelected">
+                                    <option ng-repeat="customer in customersNames track by customer.customerId">{{customer.name}}</option>
+                                </select>
+                                <button ng-click="nameSelected()" class="btn btn-info">Continue</button>
+                                <div ng-show="nameSelect">
+                                    <label> Enter the identification number of the customer</label>
+                                    <br>
+                                    <select class="form-control" ng-model="customerId">
+                                        <option ng-repeat="option in options track by option.customerId">{{option.customerId}}</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div ng-show="nameSelect">
+                                <button ng-click="goCustomerPage()" class="btn btn-primary">Continue</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
